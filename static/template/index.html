@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Predictor</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Temperature Prediction System</h1>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="prediction-tab">Predict Temperature</button>
+            <button class="tab-button" data-tab="metrics-tab">Model Metrics</button>
+            <button class="tab-button" data-tab="forecast-tab">7-Day Forecast</button>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Prediction Tab -->
+            <div id="prediction-tab" class="tab-pane active">
+                <div class="card">
+                    <h2>Temperature Prediction</h2>
+                    <div class="input-group">
+                        <label for="datepicker">Select Date:</label>
+                        <input type="date" id="datepicker" name="date">
+                    </div>
+                    <button id="predict-btn" class="btn">Predict Temperature</button>
+                    
+                    <div id="prediction-result" class="result-container hidden">
+                        <h3>Predicted Temperature for <span id="result-date"></span></h3>
+                        <div class="temp-results">
+                            <div class="temp-box max">
+                                <i class="fas fa-temperature-high"></i>
+                                <div class="temp-value">
+                                    <span id="max-temp">--</span>°C
+                                </div>
+                                <div class="temp-label">Maximum</div>
+                            </div>
+                            <div class="temp-box min">
+                                <i class="fas fa-temperature-low"></i>
+                                <div class="temp-value">
+                                    <span id="min-temp">--</span>°C
+                                </div>
+                                <div class="temp-label">Minimum</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics Tab -->
+            <div id="metrics-tab" class="tab-pane">
+                <div class="card">
+                    <h2>Model Performance Metrics</h2>
+                    
+                    <div class="model-selector">
+                        <label for="model-select">Select Model:</label>
+                        <select id="model-select">
+                            <option value="xgboost">XGBoost</option>
+                            <option value="linear_regression">Linear Regression</option>
+                            <option value="random_forest">Random Forest</option>
+                        </select>
+                    </div>
+                    
+                    <div class="metrics-container">
+                        <div class="metrics-section">
+                            <h3>Maximum Temperature Model</h3>
+                            <div class="metrics-grid">
+                                <div class="metric-box">
+                                    <h4>Test MSE</h4>
+                                    <div class="metric-value" id="max-test-mse">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Test R²</h4>
+                                    <div class="metric-value" id="max-test-r2">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Train MSE</h4>
+                                    <div class="metric-value" id="max-train-mse">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Train R²</h4>
+                                    <div class="metric-value" id="max-train-r2">--</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="metrics-section">
+                            <h3>Minimum Temperature Model</h3>
+                            <div class="metrics-grid">
+                                <div class="metric-box">
+                                    <h4>Test MSE</h4>
+                                    <div class="metric-value" id="min-test-mse">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Test R²</h4>
+                                    <div class="metric-value" id="min-test-r2">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Train MSE</h4>
+                                    <div class="metric-value" id="min-train-mse">--</div>
+                                </div>
+                                <div class="metric-box">
+                                    <h4>Train R²</h4>
+                                    <div class="metric-value" id="min-train-r2">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="metrics-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forecast Tab -->
+            <div id="forecast-tab" class="tab-pane">
+                <div class="card">
+                    <h2>7-Day Temperature Forecast</h2>
+                    <div class="input-group">
+                        <label for="forecast-datepicker">Starting Date:</label>
+                        <input type="date" id="forecast-datepicker" name="forecast-date">
+                    </div>
+                    <button id="forecast-btn" class="btn">Generate Forecast</button>
+                    
+                    <div id="forecast-result" class="forecast-container hidden">
+                        <h3>Weather Forecast for the Next 7 Days</h3>
+                        <div class="forecast-chart-container">
+                            <canvas id="forecast-chart"></canvas>
+                        </div>
+                        <div id="forecast-cards" class="forecast-cards">
+                            <!-- Forecast cards will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Temperature Prediction System &copy; 2025</p>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
