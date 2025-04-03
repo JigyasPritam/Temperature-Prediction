@@ -26,22 +26,6 @@ if os.path.exists("model_xgb_min.json"):
 else:
     print("Warning: model_xgb_min.json not found")
 
-# Metrics - Replace these with your actual metrics
-metrics = {
-    "xgboost": {
-        "max_temp": {"mse_test": 3.2156, "r2_test": 0.8763, "mse_train": 2.8459, "r2_train": 0.9134},
-        "min_temp": {"mse_test": 2.7821, "r2_test": 0.8912, "mse_train": 2.5134, "r2_train": 0.9256}
-    },
-    "linear_regression": {
-        "max_temp": {"mse_test": 4.5631, "r2_test": 0.7823, "mse_train": 4.3214, "r2_train": 0.8123},
-        "min_temp": {"mse_test": 3.9872, "r2_test": 0.8012, "mse_train": 3.7654, "r2_train": 0.8345}
-    },
-    "random_forest": {
-        "max_temp": {"mse_test": 3.8763, "r2_test": 0.8321, "mse_train": 3.2541, "r2_train": 0.8765},
-        "min_temp": {"mse_test": 3.2456, "r2_test": 0.8543, "mse_train": 2.9876, "r2_train": 0.8987}
-    }
-}
-
 @app.route('/')
 def index():
     return render_template('index.html')
