@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.textContent = 'Predicting...';
         this.disabled = true;
         
-        fetch('http://127.0.0.1:5000/predict', {
+        fetch('/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ function updateMetricsChart(modelData) {
         this.textContent = 'Generating...';
         this.disabled = true;
         
-        fetch('http://127.0.0.1:5000/forecast', {
+        fetch('/forecast', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
